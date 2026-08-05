@@ -2,6 +2,13 @@
 
 Esta es la rama dedicada a la presentación pública del proyecto. Aquí encontrarás una landing page estática, moderna y adaptable, diseñada para mostrar qué es Media Extractor DKTService y cómo acceder a su aplicación local.
 
+## 🌐 Página web
+
+- 🌍 Ver la landing page pública: https://media-extractor-dktservice.vercel.app
+- 📦 Descargar la rama principal: https://github.com/tore234/media-extractor-dktservice/archive/refs/heads/main.zip
+- 🧠 Repositorio: https://github.com/tore234/media-extractor-dktservice
+
+
 ## ¿Qué encontrarás aquí?
 
 - Una interfaz profesional y responsive.
