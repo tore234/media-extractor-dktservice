@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07080b">
+  <meta
+    name="description"
+    content="Media Extractor DKTService es una aplicación local para Windows que analiza, convierte y descarga contenido multimedia."
+  >
+
+  <title>Media Extractor DKTService | Aplicación local para Windows</title>
+
+  <link rel="icon" href="assets/logo.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+    defer
+  ></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Saltar al contenido</a>
+
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a
+        class="brand"
+        href="#top"
+        aria-label="Ir al inicio de Media Extractor DKTService"
+      >
+        <span class="brand-logo">
+          <img src="assets/logo.png" alt="Logo de Media Extractor DKTService">
+        </span>
+
+        <span class="brand-copy">
+          <strong>Media Extractor</strong>
+          <small>DKTService</small>
+        </span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Abrir menú de navegación"
+        aria-expanded="false"
+        aria-controls="site-nav"
+      >
+        <span class="menu-line"></span>
+        <span class="menu-line"></span>
+        <span class="menu-line"></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Navegación principal">
+        <a href="#features"><i class="fa-solid fa-bolt"></i> Funciones</a>
+        <a href="#platforms"><i class="fa-solid fa-layer-group"></i> Plataformas</a>
+        <a href="#requirements"><i class="fa-solid fa-list-check"></i> Requisitos</a>
+        <a href="#install"><i class="fa-solid fa-terminal"></i> Instalación</a>
+        <a href="#faq"><i class="fa-solid fa-circle-question"></i> FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">
+            <span class="live-dot" aria-hidden="true"></span>
+            Aplicación local para Windows
+          </p>
+
+          <h1>
+            Analiza, convierte y descarga
+            <span>contenido multimedia.</span>
+          </h1>
+
+          <p class="hero-text">
+            Media Extractor DKTService es una herramienta local para Windows
+            diseñada para analizar enlaces compatibles, convertir contenido a
+            MP4 o MP3, elegir la calidad y guardar el archivo directamente en
+            tu computadora.
+          </p>
+
+          <div class="hero-actions">
+            <a
+              class="button primary"
+              href="https://github.com/tore234/media-extractor-dktservice"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i class="fa-brands fa-github"></i>
+              Abrir GitHub
+            </a>
+
+            <a
+              class="button secondary"
+              href="https://github.com/tore234/media-extractor-dktservice/archive/refs/heads/main.zip"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i class="fa-solid fa-download"></i>
+              Descargar ZIP
+            </a>
+          </div>
+
+          <ul class="hero-highlights" aria-label="Aspectos destacados del proyecto">
+            <li><i class="fa-solid fa-shield-halved"></i> Aplicación local y segura</li>
+            <li><i class="fa-solid fa-cloud-arrow-down"></i> Sin almacenamiento en nube</li>
+            <li><i class="fa-brands fa-windows"></i> Compatible con Windows</li>
+          </ul>
+        </div>
+
+        <div class="hero-media reveal">
+          <div class="hero-glow" aria-hidden="true"></div>
+
+          <div class="hero-image-shell">
+            <img
+              src="assets/banner.png"
+              alt="Banner de Media Extractor DKTService"
+            >
+
+            <div class="floating-chip chip-one">
+              <i class="fa-solid fa-video"></i>
+              MP4
+            </div>
+
+            <div class="floating-chip chip-two">
+              <i class="fa-solid fa-music"></i>
+              MP3
+            </div>
+
+            <div class="floating-chip chip-three">
+              <i class="fa-solid fa-gauge-high"></i>
+              1080p
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section intro" aria-labelledby="about-title">
+      <div class="container intro-grid">
+        <div class="section-heading reveal">
+          <p class="section-tag">
+            <i class="fa-solid fa-circle-info"></i>
+            Presentación
+          </p>
+
+          <h2 id="about-title">
+            Una solución local para gestionar multimedia de forma sencilla.
+          </h2>
+        </div>
+
+        <div class="intro-card reveal">
+          <div class="intro-icon" aria-hidden="true">
+            <i class="fa-solid fa-laptop-code"></i>
+          </div>
+
+          <p>
+            Esta página web presenta y documenta el proyecto. La descarga
+            multimedia no se ejecuta en Vercel. La aplicación funcional debe
+            instalarse localmente y utilizar Python, Flask, yt-dlp y FFmpeg.
+          </p>
+
+          <p>
+            El uso debe limitarse a contenido propio o autorizado, respetando
+            las políticas de cada plataforma.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features" aria-labelledby="features-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="section-tag">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            Funciones principales
+          </p>
+
+          <h2 id="features-title">
+            Todo lo necesario para preparar y guardar tus archivos multimedia.
+          </h2>
+        </div>
+
+        <div class="card-grid">
+          <article class="card reveal">
+            <div class="feature-icon"><i class="fa-solid fa-film"></i></div>
+            <h3>Descarga MP4</h3>
+            <p>Guarda contenido compatible en formato de video y selecciona la calidad.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="feature-icon"><i class="fa-solid fa-headphones"></i></div>
+            <h3>Conversión MP3</h3>
+            <p>Extrae audio mediante FFmpeg y guárdalo directamente en tu equipo.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="feature-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+            <h3>Análisis previo</h3>
+            <p>Consulta información útil del enlace antes de iniciar la descarga.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="feature-icon"><i class="fa-regular fa-image"></i></div>
+            <h3>Miniatura y metadatos</h3>
+            <p>Visualiza autor, título, duración y miniatura del contenido identificado.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="feature-icon"><i class="fa-solid fa-sliders"></i></div>
+            <h3>Calidad ajustable</h3>
+            <p>Elige calidad máxima, 1080p, 720p, 360p o calidad mínima.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="feature-icon"><i class="fa-regular fa-folder-open"></i></div>
+            <h3>Selector de carpeta</h3>
+            <p>Define la ubicación donde se almacenarán tus archivos descargados.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="feature-icon"><i class="fa-solid fa-computer"></i></div>
+            <h3>Ejecución local</h3>
+            <p>La aplicación funciona en tu equipo sin depender de un backend externo.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="feature-icon"><i class="fa-solid fa-arrows-rotate"></i></div>
+            <h3>Actualización de yt-dlp</h3>
+            <p>Mantén los extractores actualizados ante cambios de las plataformas.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="feature-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+            <h3>Cookies opcionales</h3>
+            <p>La versión local puede usar una sesión del navegador cuando sea necesario.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="platforms" aria-labelledby="platforms-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="section-tag">
+            <i class="fa-solid fa-share-nodes"></i>
+            Plataformas compatibles
+          </p>
+
+          <h2 id="platforms-title">
+            Soporte orientado a enlaces compatibles de uso frecuente.
+          </h2>
+        </div>
+
+        <div class="platform-grid">
+          <article class="platform-card reveal">
+            <div class="platform-icon youtube">
+              <i class="fa-brands fa-youtube"></i>
+            </div>
+            <h3>YouTube</h3>
+            <p>Video y audio desde enlaces compatibles.</p>
+          </article>
+
+          <article class="platform-card reveal">
+            <div class="platform-icon tiktok">
+              <i class="fa-brands fa-tiktok"></i>
+            </div>
+            <h3>TikTok</h3>
+            <p>Contenido público y enlaces compartidos compatibles.</p>
+          </article>
+
+          <article class="platform-card reveal">
+            <div class="platform-icon instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </div>
+            <h3>Instagram</h3>
+            <p>Reels y publicaciones que la herramienta pueda resolver.</p>
+          </article>
+
+          <article class="platform-card reveal">
+            <div class="platform-icon facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </div>
+            <h3>Facebook</h3>
+            <p>Videos compatibles según la disponibilidad del extractor.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="tech-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="section-tag">
+            <i class="fa-solid fa-code"></i>
+            Tecnologías
+          </p>
+
+          <h2 id="tech-title">
+            Una base tecnológica estable y orientada al rendimiento local.
+          </h2>
+        </div>
+
+        <div class="tech-stack reveal" aria-label="Tecnologías utilizadas">
+          <span><i class="fa-brands fa-python"></i> Python</span>
+          <span><i class="fa-solid fa-flask"></i> Flask</span>
+          <span><i class="fa-solid fa-download"></i> yt-dlp</span>
+          <span><i class="fa-solid fa-wave-square"></i> FFmpeg</span>
+          <span><i class="fa-brands fa-html5"></i> HTML5</span>
+          <span><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+          <span><i class="fa-brands fa-js"></i> JavaScript</span>
+          <span><i class="fa-solid fa-window-restore"></i> Tkinter</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="requirements" aria-labelledby="requirements-title">
+      <div class="container requirements-grid">
+        <div class="section-heading reveal">
+          <p class="section-tag">
+            <i class="fa-solid fa-list-check"></i>
+            Requisitos
+          </p>
+
+          <h2 id="requirements-title">
+            Lo necesario para instalar y ejecutar la aplicación.
+          </h2>
+
+          <p class="section-text">
+            La aplicación funcional se ejecuta en el equipo del usuario.
+            FFmpeg debe instalarse por separado y añadirse al PATH.
+          </p>
+        </div>
+
+        <ul class="check-list reveal">
+          <li><i class="fa-brands fa-windows"></i> Windows 10 o Windows 11</li>
+          <li><i class="fa-brands fa-python"></i> Python 3.10 o superior</li>
+          <li><i class="fa-solid fa-box-open"></i> pip disponible</li>
+          <li><i class="fa-solid fa-wave-square"></i> FFmpeg configurado</li>
+          <li><i class="fa-solid fa-wifi"></i> Conexión a Internet</li>
+          <li><i class="fa-regular fa-window-maximize"></i> Navegador moderno</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="install" aria-labelledby="install-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="section-tag">
+            <i class="fa-solid fa-terminal"></i>
+            Instalación
+          </p>
+
+          <h2 id="install-title">
+            Guía paso a paso para probar el proyecto localmente.
+          </h2>
+        </div>
+
+        <div class="steps">
+          <article class="step-card reveal">
+            <span class="step-number">01</span>
+            <h3>Clonar el repositorio</h3>
+
+            <div class="code-block">
+              <code>git clone https://github.com/tore234/media-extractor-dktservice.git</code>
+              <button
+                class="copy-btn"
+                type="button"
+                data-copy="git clone https://github.com/tore234/media-extractor-dktservice.git"
+                aria-label="Copiar comando para clonar"
+              >
+                <i class="fa-regular fa-copy"></i>
+                <span>Copiar</span>
+              </button>
+            </div>
+
+            <div class="code-block">
+              <code>cd media-extractor-dktservice</code>
+              <button
+                class="copy-btn"
+                type="button"
+                data-copy="cd media-extractor-dktservice"
+                aria-label="Copiar comando para entrar al proyecto"
+              >
+                <i class="fa-regular fa-copy"></i>
+                <span>Copiar</span>
+              </button>
+            </div>
+          </article>
+
+          <article class="step-card reveal">
+            <span class="step-number">02</span>
+            <h3>Crear el entorno virtual</h3>
+
+            <div class="code-block">
+              <code>python -m venv .venv</code>
+              <button
+                class="copy-btn"
+                type="button"
+                data-copy="python -m venv .venv"
+                aria-label="Copiar comando para crear entorno"
+              >
+                <i class="fa-regular fa-copy"></i>
+                <span>Copiar</span>
+              </button>
+            </div>
+
+            <div class="code-block">
+              <code>.venv\Scripts\Activate.ps1</code>
+              <button
+                class="copy-btn"
+                type="button"
+                data-copy=".venv\Scripts\Activate.ps1"
+                aria-label="Copiar comando para activar entorno"
+              >
+                <i class="fa-regular fa-copy"></i>
+                <span>Copiar</span>
+              </button>
+            </div>
+          </article>
+
+          <article class="step-card reveal">
+            <span class="step-number">03</span>
+            <h3>Instalar dependencias</h3>
+
+            <div class="code-block">
+              <code>python -m pip install --upgrade pip</code>
+              <button
+                class="copy-btn"
+                type="button"
+                data-copy="python -m pip install --upgrade pip"
+                aria-label="Copiar comando para actualizar pip"
+              >
+                <i class="fa-regular fa-copy"></i>
+                <span>Copiar</span>
+              </button>
+            </div>
+
+            <div class="code-block">
+              <code>python -m pip install -r requirements.txt</code>
+              <button
+                class="copy-btn"
+                type="button"
+                data-copy="python -m pip install -r requirements.txt"
+                aria-label="Copiar comando para instalar dependencias"
+              >
+                <i class="fa-regular fa-copy"></i>
+                <span>Copiar</span>
+              </button>
+            </div>
+          </article>
+
+          <article class="step-card reveal">
+            <span class="step-number">04</span>
+            <h3>Ejecutar la aplicación</h3>
+
+            <div class="code-block">
+              <code>python app.py</code>
+              <button
+                class="copy-btn"
+                type="button"
+                data-copy="python app.py"
+                aria-label="Copiar comando para iniciar aplicación"
+              >
+                <i class="fa-regular fa-copy"></i>
+                <span>Copiar</span>
+              </button>
+            </div>
+
+            <div class="code-block">
+              <code>http://127.0.0.1:5000</code>
+              <button
+                class="copy-btn"
+                type="button"
+                data-copy="http://127.0.0.1:5000"
+                aria-label="Copiar dirección local"
+              >
+                <i class="fa-regular fa-copy"></i>
+                <span>Copiar</span>
+              </button>
+            </div>
+
+            <p class="step-note">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              FFmpeg debe instalarse por separado y estar disponible en el PATH.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="section-tag">
+            <i class="fa-solid fa-circle-question"></i>
+            Preguntas frecuentes
+          </p>
+
+          <h2 id="faq-title">
+            Respuestas rápidas sobre el proyecto y su funcionamiento.
+          </h2>
+        </div>
+
+        <div class="faq-list reveal">
+          <details>
+            <summary>
+              <span>¿Esta página ejecuta descargas multimedia?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </summary>
+            <p>
+              No. Esta landing page es estática y solo presenta el proyecto.
+              Las descargas reales se realizan desde la aplicación local.
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              <span>¿Se necesita backend para ver este sitio?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </summary>
+            <p>
+              No. La página funciona sin backend y puede desplegarse en Vercel
+              como un sitio estático.
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              <span>¿Qué pasa si FFmpeg no está instalado?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </summary>
+            <p>
+              La aplicación puede no convertir audio ni combinar ciertos
+              formatos. FFmpeg debe instalarse y agregarse al PATH.
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              <span>¿Se guardan archivos en la nube?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </summary>
+            <p>
+              No. Los archivos se guardan localmente en la carpeta seleccionada
+              por el usuario.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta" aria-labelledby="cta-title">
+      <div class="container cta-card reveal">
+        <div class="cta-icon" aria-hidden="true">
+          <i class="fa-solid fa-shield-heart"></i>
+        </div>
+
+        <div class="cta-copy">
+          <p class="section-tag">Uso responsable</p>
+          <h2 id="cta-title">
+            Utiliza el proyecto únicamente con contenido propio o autorizado.
+          </h2>
+          <p>
+            Media Extractor DKTService está pensado para uso local, educativo
+            y responsable. Respeta las políticas de cada plataforma y la
+            legislación aplicable.
+          </p>
+        </div>
+
+        <div class="cta-actions">
+          <a
+            class="button primary"
+            href="https://github.com/tore234/media-extractor-dktservice"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <i class="fa-brands fa-github"></i>
+            Ir al repositorio
+          </a>
+
+          <a
+            class="button secondary"
+            href="https://github.com/tore234/media-extractor-dktservice/archive/refs/heads/main.zip"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <i class="fa-solid fa-file-zipper"></i>
+            Descargar main
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <button
+    class="back-to-top"
+    type="button"
+    aria-label="Volver al inicio"
+    title="Volver al inicio"
+  >
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>
+        © <span id="year"></span> DKTService.
+        <span>Media Extractor</span>
+      </p>
+
+      <a href="#top">
+        <i class="fa-solid fa-arrow-up"></i>
+        Volver arriba
+      </a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
