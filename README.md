@@ -12,6 +12,12 @@ Aplicación web local para analizar, convertir y descargar contenido multimedia 
 
 Media Extractors es una herramienta local diseñada para ayudar a descargar contenido multimedia de forma sencilla desde una interfaz web. Permite analizar enlaces, elegir el formato deseado y guardar los archivos directamente en tu equipo.
 
+## 🌐 Página web
+
+- 🌍 Ver la landing page pública: https://media-extractor-dktservice.vercel.app
+- 📦 Descargar la rama principal: https://github.com/tore234/media-extractor-dktservice/archive/refs/heads/main.zip
+- 🧠 Repositorio: https://github.com/tore234/media-extractor-dktservice
+
 ## 🚀 Funcionalidades
 
 - Análisis previo de enlaces compatibles.
