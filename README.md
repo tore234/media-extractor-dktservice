@@ -1,8 +1,3 @@
-blioteca
-/
-README_MAIN_PRO.md
-
-
 🩸 Media Extractor DKTService
 <div align="center">
 
