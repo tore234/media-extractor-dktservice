@@ -1,3 +1,8 @@
+blioteca
+/
+README_MAIN_PRO.md
+
+
 🩸 Media Extractor DKTService
 <div align="center">
 
@@ -5,158 +10,59 @@
 
 <br>
 
-Aplicación local para analizar, convertir y descargar contenido multimedia
-Convierte contenido compatible a MP4 o MP3 mediante una interfaz web local construida con Flask, yt-dlp y FFmpeg.
+Aplicación web local para analizar y descargar contenido multimedia desde enlaces compatibles usando Flask, yt-dlp y FFmpeg.
 
-<br>
+## Descripción
 
+Media Extractors permite:
 
+- Analizar un enlace antes de descargarlo.
+- Elegir entre formato MP4 o MP3.
+- Definir la calidad de descarga.
+- Seleccionar una carpeta de destino.
+- Descargar el archivo de forma local en el equipo.
 
+La interfaz se abre en el navegador y el procesamiento se realiza de forma local.
 
+## Requisitos
 
+- Windows 10 o 11
+- Python 3.10 o superior
+- pip
+- FFmpeg instalado y agregado al PATH
+- Conexión a Internet
 
+## Instalación
 
+1. Clona el repositorio:
+   ```bash
+   git clone <url-del-repositorio>
+   cd Media-estractors
+   ```
 
-</div>
+2. Crea y activa un entorno virtual:
+   ```powershell
+   python -m venv .venv
+   .venv\Scripts\Activate.ps1
+   ```
 
-📌 Descripción
-Media Extractor DKTService es una aplicación local que permite analizar enlaces multimedia, elegir el formato y la calidad, seleccionar una carpeta de destino y guardar el resultado directamente en el equipo del usuario.
+3. Instala las dependencias:
+   ```bash
+   python -m pip install --upgrade pip
+   python -m pip install -r requirements.txt
+   ```
 
-Aunque la interfaz se abre en el navegador, el procesamiento se ejecuta localmente en la computadora mediante Flask, yt-dlp y FFmpeg.
+4. Asegúrate de tener FFmpeg disponible:
+   ```bash
+   ffmpeg -version
+   ```
 
-Navegador local
-      ↓
-Flask en 127.0.0.1
-      ↓
-yt-dlp + FFmpeg
-      ↓
-Archivo guardado en el equipo
-✨ Funciones principales
-🎬 Descarga de contenido compatible en formato MP4.
+## Uso
 
-🎧 Extracción y conversión de audio a MP3.
-
-🔎 Análisis previo del enlace.
-
-🖼️ Vista previa con título, autor, duración y miniatura.
-
-🎚️ Selección de calidad:
-
-Máxima.
-
-Alta, hasta 1080p.
-
-Media, hasta 720p.
-
-Baja, hasta 360p.
-
-Mínima.
-
-📁 Selección de carpeta de destino.
-
-🖥️ Interfaz local adaptable a PC y dispositivos móviles dentro de la red.
-
-🍪 Compatibilidad opcional con cookies del navegador para contenido que exige sesión.
-
-⚠️ Mensajes claros de error y confirmación.
-
-🩸 Diseño visual negro, rojo oscuro y carmesí de DKTService.
-
-🌐 Plataformas contempladas
-La aplicación utiliza los extractores disponibles en yt-dlp y está preparada para trabajar con enlaces compatibles de:
-
-Plataforma	Contenido público	Contenido con sesión
-YouTube	✅	Según disponibilidad
-TikTok	✅	Limitado
-Instagram	✅	Puede requerir cookies
-Facebook	✅	Puede requerir cookies
-La compatibilidad puede cambiar cuando las plataformas modifican sus sistemas. Mantén yt-dlp actualizado.
-
-🧰 Tecnologías
-Tecnología	Función
-Python	Lógica principal
-Flask	Servidor web local
-Jinja2	Renderizado de la interfaz
-yt-dlp	Análisis y descarga multimedia
-FFmpeg	Conversión, extracción y unión de audio/video
-HTML5	Estructura de la interfaz
-CSS3	Diseño visual
-JavaScript	Interacciones del formulario
-Tkinter	Selector local de carpetas
-📂 Estructura del repositorio
-media-extractor-dktservice/
-│
-├── app/
-│   ├── app.py
-│   ├── requirements.txt
-│   ├── instalar.bat
-│   ├── iniciar.bat
-│   ├── actualizar.bat
-│   │
-│   ├── templates/
-│   │   ├── index.html
-│   │   └── logo/
-│   │       ├── logo.png
-│   │       └── banner.png
-│   │
-│   └── downloads/
-│       └── .gitkeep
-│
-├── docs/
-│   ├── instalacion.md
-│   ├── ffmpeg.md
-│   └── problemas-frecuentes.md
-│
-├── .gitignore
-├── LICENSE
-└── README.md
-Ajusta esta estructura si tu proyecto todavía tiene los archivos directamente en la raíz.
-
-✅ Requisitos
-Antes de ejecutar la aplicación necesitas:
-
-Windows 10 o Windows 11.
-
-Python 3.10 o superior.
-
-pip.
-
-FFmpeg agregado al PATH.
-
-Navegador moderno.
-
-Conexión a Internet.
-
-Comprueba Python:
-
-python --version
-Comprueba pip:
-
-python -m pip --version
-Comprueba FFmpeg:
-
-ffmpeg -version
-🚀 Instalación rápida
-1. Clonar el repositorio
-git clone https://github.com/TU-USUARIO/media-extractor-dktservice.git
-cd media-extractor-dktservice
-2. Entrar a la aplicación
-cd app
-3. Crear el entorno virtual
-python -m venv .venv
-4. Activarlo
-En PowerShell:
-
-.venv\Scripts\Activate.ps1
-En CMD:
-
-.venv\Scripts\activate.bat
-5. Instalar dependencias
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-6. Ejecutar
-python app.py
-Abre en el navegador:
+1. Ejecuta la aplicación:
+   ```bash
+   python app.py
+   ```
 
 http://127.0.0.1:5000
 ⚡ Instalación automática en Windows
