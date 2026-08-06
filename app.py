@@ -118,14 +118,40 @@ def detect_platform(url: str) -> str:
 
 
 def has_ffmpeg() -> bool:
-    return (
-        shutil.which("ffmpeg") is not None
-        or shutil.which("ffmpeg.exe") is not None
-    )
+    """Comprueba que FFmpeg y FFprobe estén disponibles en el PATH."""
+    ffmpeg = shutil.which("ffmpeg") or shutil.which("ffmpeg.exe")
+    ffprobe = shutil.which("ffprobe") or shutil.which("ffprobe.exe")
+    return bool(ffmpeg and ffprobe)
 
 
 def platform_display_name(platform: str) -> str:
     return SUPPORTED_PLATFORM_NAMES.get(platform, "Sitio compatible")
+
+
+QUALITY_ALIASES = {
+    "maximum": "best",
+    "max": "best",
+    "best": "best",
+    "2160p": "best",
+    "4k": "best",
+    "high": "1080",
+    "1080": "1080",
+    "1080p": "1080",
+    "medium": "720",
+    "720": "720",
+    "720p": "720",
+    "low": "360",
+    "360": "360",
+    "360p": "360",
+    "lowest": "lowest",
+    "worst": "lowest",
+}
+
+
+def normalize_quality(quality: str | None) -> str:
+    """Normaliza los valores enviados por el formulario."""
+    clean_quality = (quality or "best").strip().lower()
+    return QUALITY_ALIASES.get(clean_quality, "best")
 
 
 def base_ydl_options() -> dict[str, Any]:
@@ -134,9 +160,14 @@ def base_ydl_options() -> dict[str, Any]:
         "quiet": True,
         "no_warnings": True,
         "noplaylist": True,
-        "socket_timeout": 30,
-        "retries": 3,
-        "fragment_retries": 3,
+        "socket_timeout": 45,
+        "retries": 10,
+        "fragment_retries": 10,
+        "extractor_retries": 5,
+        "file_access_retries": 5,
+        "continuedl": True,
+        "concurrent_fragment_downloads": 4,
+        "check_formats": "selected",
         "extract_flat": False,
         "windowsfilenames": True,
         "http_headers": {
@@ -171,16 +202,8 @@ def apply_platform_options(
     ):
         options["cookiesfrombrowser"] = (COOKIE_BROWSER,)
 
-    # TikTok público suele funcionar sin iniciar sesión. Se conserva un
-    # User-Agent de navegador y se evita forzar cookies para reducir fallos.
-    if platform == "tiktok":
-        options.setdefault("extractor_args", {})
-        options["extractor_args"].setdefault(
-            "tiktok",
-            {
-                "api_hostname": ["api22-normal-c-useast2a.tiktokv.com"],
-            },
-        )
+    # No se fija manualmente un host de API para TikTok. yt-dlp elige
+    # automáticamente el cliente y el endpoint compatibles con su versión.
 
     return platform
 
@@ -191,12 +214,18 @@ def build_download_options(
     download_folder: str | None = None,
     quality: str = "best",
 ) -> dict[str, Any]:
-    """Construye las opciones de yt-dlp según formato y calidad."""
+    """Construye las opciones respetando la calidad elegida por el usuario.
+
+    La selección no limita primero por extensión. Esto evita perder la máxima
+    resolución cuando el mejor video solo existe como WebM, VP9 o AV1.
+    FFmpeg combina el mejor video con el mejor audio sin recodificarlos.
+    """
     ffmpeg_available = (
         has_ffmpeg()
         if ffmpeg_available is None
         else ffmpeg_available
     )
+    normalized_quality = normalize_quality(quality)
 
     target_folder = resolve_download_folder(download_folder)
     output_template = os.path.join(
@@ -204,9 +233,10 @@ def build_download_options(
         "%(title).180B [%(id)s].%(ext)s",
     )
 
-    common_options = {
+    common_options: dict[str, Any] = {
         **base_ydl_options(),
         "outtmpl": output_template,
+        "overwrites": False,
     }
 
     if format_type == "mp3":
@@ -223,47 +253,74 @@ def build_download_options(
         }
 
     if ffmpeg_available:
-        quality_formats = {
-            "lowest": "worstvideo+worstaudio/worst",
-            "low": (
-                "bestvideo[height<=360][ext=mp4]+bestaudio[ext=m4a]/"
-                "best[height<=360][ext=mp4]/best[height<=360]"
-            ),
-            "medium": (
-                "bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/"
-                "best[height<=720][ext=mp4]/best[height<=720]"
-            ),
-            "high": (
-                "bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/"
-                "best[height<=1080][ext=mp4]/best[height<=1080]"
-            ),
-            "best": (
-                "bestvideo[ext=mp4]+bestaudio[ext=m4a]/"
-                "bestvideo+bestaudio/best"
-            ),
-        }
-
-        return {
+        # El selector oficial de yt-dlp para la mejor calidad disponible.
+        # Descarga video y audio separados cuando es necesario y los combina.
+        video_options: dict[str, Any] = {
             **common_options,
-            "format": quality_formats.get(quality, quality_formats["best"]),
-            "merge_output_format": "mp4",
+            "format": "bv*+ba/b",
+            # MP4 cuando los codecs lo permiten; MKV como respaldo para no
+            # recodificar ni perder calidad con AV1, VP9 u Opus.
+            "merge_output_format": "mp4/mkv",
         }
 
-    quality_formats_without_ffmpeg = {
-        "lowest": "worst[ext=mp4]/worst",
-        "low": "best[height<=360][ext=mp4]/best[height<=360]",
-        "medium": "best[height<=720][ext=mp4]/best[height<=720]",
-        "high": "best[height<=1080][ext=mp4]/best[height<=1080]",
-        "best": "best[ext=mp4]/best",
+        if normalized_quality == "1080":
+            video_options["format_sort"] = [
+                "res:1080",
+                "fps",
+                "hdr:12",
+                "vcodec",
+                "channels",
+                "acodec",
+                "br",
+            ]
+        elif normalized_quality == "720":
+            video_options["format_sort"] = [
+                "res:720",
+                "fps",
+                "hdr:12",
+                "vcodec",
+                "channels",
+                "acodec",
+                "br",
+            ]
+        elif normalized_quality == "360":
+            video_options["format_sort"] = [
+                "res:360",
+                "fps",
+                "vcodec",
+                "channels",
+                "acodec",
+                "br",
+            ]
+        elif normalized_quality == "lowest":
+            video_options["format_sort"] = [
+                "+res",
+                "+fps",
+                "+br",
+            ]
+
+        # Para "best" no se agrega límite: yt-dlp elige la resolución, FPS,
+        # HDR, video y audio de mayor calidad ofrecidos por la plataforma.
+        return video_options
+
+    # Sin FFmpeg solo se pueden usar formatos que ya traen audio y video.
+    # Esto evita descargar un archivo de video sin sonido, pero no garantiza
+    # la máxima calidad de YouTube, que normalmente viene en pistas separadas.
+    combined_options: dict[str, Any] = {
+        **common_options,
+        "format": "b[ext=mp4]/b",
     }
 
-    return {
-        **common_options,
-        "format": quality_formats_without_ffmpeg.get(
-            quality,
-            quality_formats_without_ffmpeg["best"],
-        ),
-    }
+    if normalized_quality == "1080":
+        combined_options["format_sort"] = ["res:1080", "fps", "br"]
+    elif normalized_quality == "720":
+        combined_options["format_sort"] = ["res:720", "fps", "br"]
+    elif normalized_quality == "360":
+        combined_options["format_sort"] = ["res:360", "fps", "br"]
+    elif normalized_quality == "lowest":
+        combined_options["format_sort"] = ["+res", "+fps", "+br"]
+
+    return combined_options
 
 
 def find_downloaded_file(
@@ -372,9 +429,17 @@ def humanize_error(error: Exception, platform: str) -> str:
             "y vuelve a intentarlo."
         )
 
-    if "ffmpeg" in message_lower:
+    if "requested format is not available" in message_lower:
         return (
-            "FFmpeg no está disponible o no está configurado correctamente."
+            "La plataforma no ofreció un formato compatible con la selección. "
+            "Actualiza yt-dlp y verifica que FFmpeg y FFprobe estén instalados. "
+            "La opción de máxima calidad necesita combinar video y audio."
+        )
+
+    if "ffmpeg" in message_lower or "ffprobe" in message_lower:
+        return (
+            "FFmpeg o FFprobe no están disponibles o no están configurados "
+            "correctamente en el PATH."
         )
 
     if any(
@@ -532,6 +597,7 @@ def download():
     url = request.form.get("url", "").strip()
     format_type = request.form.get("format", "mp4")
     quality = request.form.get("quality", "best")
+    normalized_quality = normalize_quality(quality)
 
     resolved_folder, selected_folder, custom_folder = get_selected_folder()
     platform = detect_platform(url)
@@ -559,8 +625,25 @@ def download():
         return render_template(
             "index.html",
             error=(
-                "Para convertir a MP3 necesitas FFmpeg instalado "
-                "y agregado al PATH."
+                "Para convertir a MP3 necesitas FFmpeg y FFprobe instalados "
+                "y agregados al PATH."
+            ),
+            **common_template_data,
+        )
+
+    if (
+        format_type != "mp3"
+        and platform == "youtube"
+        and normalized_quality == "best"
+        and not ffmpeg_available
+    ):
+        return render_template(
+            "index.html",
+            error=(
+                "Para descargar la máxima calidad de YouTube necesitas "
+                "FFmpeg y FFprobe. YouTube suele entregar el video y el "
+                "audio por separado; sin FFmpeg solo sería posible descargar "
+                "una versión combinada de menor calidad."
             ),
             **common_template_data,
         )
@@ -569,7 +652,7 @@ def download():
         format_type=format_type,
         ffmpeg_available=ffmpeg_available,
         download_folder=resolved_folder,
-        quality=quality,
+        quality=normalized_quality,
     )
 
     try:
